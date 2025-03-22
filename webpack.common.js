@@ -1,6 +1,11 @@
 import { resolve } from 'node:path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import MiniCssExtractPlugin, { loader as _loader } from 'mini-css-extract-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export const target = 'web';
 export const output = {
@@ -20,7 +25,7 @@ export const module = {
     },
     {
       test: /\.css$/,
-      use: [_loader, 'css-loader']
+      use: [MiniCssExtractPlugin.loader, 'css-loader']
     },
     {
       test: /\.(png|svg|jpg|jpeg|gif)$/i,
